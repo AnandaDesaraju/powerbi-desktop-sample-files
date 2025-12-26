@@ -32,6 +32,12 @@
 
 		annotation SummarizationSetBy = Automatic
 
+	column CurrencyTrends = 1
+		formatString: 0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition Currency = m
 		mode: import
 		source =

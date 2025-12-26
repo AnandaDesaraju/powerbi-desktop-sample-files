@@ -6,6 +6,7 @@ Model structure
 The model has nine tables:
 
 Table	     Description
+-------------------------------------------------------------------------------------------------------------------------------------------
 Customer	Describes customers and their geographic location. Customers purchase products online (Internet sales).
 Date	    There are three relationships between the Date and Sales tables, for order date, ship date, and due date. The order date relationship is active. The company's reports sales using a fiscal year that commences on July 1 of each year. The table is marked as a date table using the Date column.
             Product	Stores finished products only.

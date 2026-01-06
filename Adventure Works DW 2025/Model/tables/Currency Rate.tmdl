@@ -46,6 +46,12 @@
 
 		annotation SummarizationSetBy = Automatic
 
+	column Start_of_the_day_dummy = 1
+		formatString: 0
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
 	partition 'Currency Rate' = m
 		mode: import
 		source =

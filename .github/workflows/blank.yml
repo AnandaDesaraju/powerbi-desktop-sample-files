@@ -35,12 +35,7 @@ jobs:
           AZURE_CLIENT_SECRET: "CNE8Q~8BwoWFBOP7ONngTYXUM8dqI5dUcOYO5bM_"
         run: |
           $workspaceId = "bf4236fe-57b8-4552-a1a4-e0453da8cb4"
-          $pbixPath = "./pbix/Adventure Works DW 2025.pbix"
+          $pbixPath = "./powerbi-desktop-sample-files/Adventure Works DW 2025.pbix"
           $reportName = "Adventure Works DW 2025"
-
-          Connect-PowerBIServiceAccount `
-                      -Tenant $env:AZURE_TENANT_ID `
-                      -ClientId $env:AZURE_CLIENT_ID `
-                      -ClientSecret $env:AZURE_CLIENT_SECRET
 
           New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId

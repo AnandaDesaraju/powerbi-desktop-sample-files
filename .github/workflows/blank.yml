@@ -32,7 +32,7 @@ jobs:
           
         run: |
           $workspaceId = [Guid]"bf4236fe-57b8-4552-a1a4-e0453da8cb45"
-          $pbixPath = "./Adventure Works DW 2025.pbix"
+          $pbixPath = "C:\Tools\pbi-tools\Adventure Works DW 2025.pbix"
           $reportName = "Adventure Works DW 2025"
 
           $secPassword = ConvertTo-SecureString $env:AZURE_CLIENT_SECRET -AsPlainText -Force

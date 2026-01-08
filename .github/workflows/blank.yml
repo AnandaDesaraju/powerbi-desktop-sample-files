@@ -1,3 +1,4 @@
+
 # This is a basic workflow to help you get started with Actions
 
 name: CI
@@ -37,9 +38,10 @@ jobs:
           $pbixPath = "./pbix/Adventure Works DW 2025.pbix"
           $reportName = "Adventure Works DW 2025"
 
-          Connect-PowerBIServiceAccount -ServicePrincipal `
-            -Tenant $env:AZURE_TENANT_ID `
-            -ClientId $env:AZURE_CLIENT_ID `
-            -ClientSecret $env:AZURE_CLIENT_SECRET
+          Connect-PowerBIServiceAccount `
+          -ServicePrincipal `
+          -Tenant $env:AZURE_TENANT_ID `
+          -ClientId $env:AZURE_CLIENT_ID `
+          -ClientSecret $env:AZURE_CLIENT_SECRET
 
           New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId

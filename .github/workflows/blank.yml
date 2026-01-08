@@ -29,9 +29,10 @@ jobs:
           AZURE_CLIENT_ID: "c6c3396c-4607-4265-a86b-a06414a655b4"
           AZURE_TENANT_ID: "194b3c5c-48e6-4a3d-959d-d4d84e303fd7"
           AZURE_CLIENT_SECRET: "CNE8Q~8BwoWFBOP7ONngTYXUM8dqI5dUcOYO5bM_"
+          workspaceId: ${{ secrets.WORKSPACEID }}
           
         run: |
-          $workspaceId = [Guid]"bf4236fe-57b8-4552-a1a4-e0453da8cb45"
+          $workspaceId = $env:workspaceId
           $pbixPath = "./Adventure Works DW 2025.pbix"
           $reportName = "Adventure Works DW 2025"
 

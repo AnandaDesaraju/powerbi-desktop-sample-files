@@ -15,8 +15,6 @@ jobs:
       - name: Install Power BI modules
         shell: pwsh
         run: |
-          Uninstall-Module MicrosoftPowerBIMgmt.Profile -AllVersions -Force -ErrorAction SilentlyContinue
-          Uninstall-Module MicrosoftPowerBIMgmt.Reports -AllVersions -Force -ErrorAction SilentlyContinue
           Install-Module -Name MicrosoftPowerBIMgmt.Profile -Force -Scope CurrentUser -AllowClobber
           Install-Module -Name MicrosoftPowerBIMgmt.Reports -Force -Scope CurrentUser -AllowClobber
           Import-Module MicrosoftPowerBIMgmt.Profile
@@ -37,14 +35,10 @@ jobs:
           $reportName = "Adventure Works DW 2025"
 
           # Authenticate
-          Login-PowerBIServiceAccount -ServicePrincipal `
-            -Tenant $env:AZURE_TENANT_ID `
-            -ClientId $env:AZURE_CLIENT_ID `
-            -ClientSecret $env:AZURE_CLIENT_SECRET
+          Connect-PowerBIServiceAccount -Tenant $env:AZURE_TENANT_ID -ServicePrincipal -Credential (Get-Credential)
 
           # Verify login
           Get-PowerBIWorkspace | Select-Object Id, Name
 
           # Deploy report
           New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId
-          

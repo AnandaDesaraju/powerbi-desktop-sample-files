@@ -23,8 +23,8 @@ jobs:
       - name: Install Power BI PowerShell module
         shell: pwsh
         run: |
-          Install-Module -Name MicrosoftPowerBIMgmt -Force -Scope CurrentUser
-          Import-Module MicrosoftPowerBIMgmt
+          Install-Module -Name MicrosoftPowerBIMgmt.Profile -Force -Scope CurrentUser -AllowClobber
+          Import-Module MicrosoftPowerBIMgmt.Profile
 
       - name: Run PowerShell deployment script
         shell: pwsh   # use PowerShell Core
@@ -39,9 +39,9 @@ jobs:
           $reportName = "Adventure Works DW 2025"
 
           Connect-PowerBIServiceAccount `
-          -ServicePrincipal `
-          -Tenant $env:AZURE_TENANT_ID `
-          -ClientId $env:AZURE_CLIENT_ID `
-          -ClientSecret $env:AZURE_CLIENT_SECRET
+                      -ServicePrincipal `
+                      -Tenant $env:AZURE_TENANT_ID `
+                      -ClientId $env:AZURE_CLIENT_ID `
+                      -ClientSecret $env:AZURE_CLIENT_SECRET
 
           New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId

@@ -15,22 +15,29 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+   deploy-powerbi:
+    runs-on: windows-latest
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Setup PowerShell
+        uses: actions/setup-powershell@v2
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Deploy PBIX to Power BI
+        shell: pwsh
+        env:
+          AZURE_CLIENT_ID: "c6c3396c-4607-4265-a86b-a06414a655b4"
+          AZURE_TENANT_ID: "194b3c5c-48e6-4a3d-959d-d4d84e303fd7"
+          AZURE_CLIENT_SECRET: "CNE8Q~8BwoWFBOP7ONngTYXUM8dqI5dUcOYO5bM_"
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          $workspaceId = "bf4236fe-57b8-4552-a1a4-e0453da8cb4"
+          $pbixPath = "./pbix/Adventure Works DW 2025.pbix"
+          $reportName = "Adventure Works DW 2025"
+
+          Connect-PowerBIServiceAccount -ServicePrincipal `
+            -Tenant $env:AZURE_TENANT_ID `
+            -ClientId $env:AZURE_CLIENT_ID `
+            -ClientSecret $env:AZURE_CLIENT_SECRET
+
+          New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId

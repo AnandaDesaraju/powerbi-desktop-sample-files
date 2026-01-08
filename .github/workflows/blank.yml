@@ -38,4 +38,4 @@ jobs:
 
           Connect-PowerBIServiceAccount -Tenant $env:AZURE_TENANT_ID -ServicePrincipal -Credential $credential
 
-          New-PowerBIReport -Path $pbixPath -Name $reportName -WorkspaceId $workspaceId
+          New-PowerBIReport -Path $pbixPath -Name $reportName

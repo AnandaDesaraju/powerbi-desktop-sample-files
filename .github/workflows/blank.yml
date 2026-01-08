@@ -31,7 +31,7 @@ jobs:
           AZURE_CLIENT_SECRET: "CNE8Q~8BwoWFBOP7ONngTYXUM8dqI5dUcOYO5bM_"
           
         run: |
-          $workspaceId = [Guid]"bf4236fe-57b8-4552-a1a4-e0453da8cb45"
+          $workspaceId ="bf4236fe-57b8-4552-a1a4-e0453da8cb4"
           $pbixPath = "./Adventure Works DW 2025.pbix"
           $reportName = "Adventure Works DW 2025"
 

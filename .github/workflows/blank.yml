@@ -4,10 +4,8 @@ name: CI
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
+  # Triggers the workflow on push events but only for the "main" branch
   push:
-    branches: [ "main" ]
-  pull_request:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -21,11 +19,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup PowerShell
-        uses: actions/setup-powershell@v2
+      - name: Run PowerShell deployment script
+        shell: pwsh   # use PowerShell Core
 
-      - name: Deploy PBIX to Power BI
-        shell: pwsh
         env:
           AZURE_CLIENT_ID: "c6c3396c-4607-4265-a86b-a06414a655b4"
           AZURE_TENANT_ID: "194b3c5c-48e6-4a3d-959d-d4d84e303fd7"

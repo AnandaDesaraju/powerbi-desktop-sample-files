@@ -37,7 +37,7 @@ jobs:
           $reportName = "Adventure Works DW 2025"
 
           # Authenticate
-          Connect-PowerBIServiceAccount -ServicePrincipal `
+          Login-PowerBIServiceAccount -ServicePrincipal `
             -Tenant $env:AZURE_TENANT_ID `
             -ClientId $env:AZURE_CLIENT_ID `
             -ClientSecret $env:AZURE_CLIENT_SECRET

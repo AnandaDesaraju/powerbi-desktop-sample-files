@@ -18,6 +18,12 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      
+      - name: Install Power BI PowerShell module
+        shell: pwsh
+        run: |
+          Install-Module -Name MicrosoftPowerBIMgmt -Force -Scope CurrentUser
+          Import-Module MicrosoftPowerBIMgmt
 
       - name: Run PowerShell deployment script
         shell: pwsh   # use PowerShell Core
